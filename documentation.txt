@@ -1,0 +1,22 @@
+ Server XAMPP
+
+// Path
+ C: c:/xampp/htdocs
+
+// Create project
+ composer create-project laravel/laravel iot-device-laravel-project
+
+// Run project
+ php artisan serve
+
+// Create database Mysql
+CREATE DATABASE iot;
+
+// Make model
+php artisan make:model nombre_modelo -m
+
+// Navigate to Model
+app\Models\nombre_modelo.php
+
+// Migrate
+php artisan migrate
