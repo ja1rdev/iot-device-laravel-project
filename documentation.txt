@@ -9,6 +9,7 @@
 // Run project
  php artisan serve
 
+
 // Create database Mysql
 CREATE DATABASE iot;
 
@@ -20,3 +21,20 @@ app\Models\nombre_modelo.php
 
 // Migrate
 php artisan migrate
+
+
+// Install extensions
+sudo apt-get update
+sudo apt-get install php8.2-dom php8.2-xml php8.2-curl
+
+
+composer install
+
+// Copy .env
+cp .env.example .env
+
+// Generate key
+php artisan key:generate
+
+// Run project
+php artisan serve
