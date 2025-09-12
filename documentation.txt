@@ -23,11 +23,7 @@ app\Models\nombre_modelo.php
 php artisan migrate
 
 
-// Install extensions
-sudo apt-get update
-sudo apt-get install php8.2-dom php8.2-xml php8.2-curl
-
-
+// Install dependencies
 composer install
 
 // Copy .env
