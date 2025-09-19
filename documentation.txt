@@ -34,3 +34,15 @@ php artisan key:generate
 
 // Run project
 php artisan serve
+
+// Clear cache
+php artisan optimize:clear
+
+php artisan config:clear
+
+php artisan route:clear
+
+php artisan view:clear
+
+// Create model station
+php artisan make:model Station -m
