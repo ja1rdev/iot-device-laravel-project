@@ -12,9 +12,10 @@
 </head>
 <body>
 
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-white border-bottom mb-4">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="{{ route('home') }}">Laravel + PGSQL</a>
+    <a class="navbar-brand fw-bold" href="{{ route('home') }}">Laravel + PostgreSQL</a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="">Inicio</a></li>
@@ -25,12 +26,15 @@
   </div>
 </nav>
 
+<!-- Main Content -->
 <main class="container mb-5">@yield('content')</main>
 
+<!-- Footer -->
 <footer class="text-center text-muted py-4">
   <small>Demo Bootstrap 5 + DataTables · Laravel + PostgreSQL</small>
 </footer>
 
+<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>

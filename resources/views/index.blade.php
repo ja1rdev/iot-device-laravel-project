@@ -67,7 +67,7 @@
     </div>
   </div>
 
-  <!-- Métricas rápidas (dinámicas) -->
+  <!-- Sensors online -->
   <div class="col-12 col-md-4 mb-3">
     <div class="card metric-card shadow-sm">
       <div class="card-body">
@@ -118,7 +118,7 @@
     </div>
   </div>
 
-  <!-- Selector + Gráfica -->
+  <!-- Selector + Chart -->
   <div class="col-12 mb-4">
     <div class="card shadow-sm">
       <div class="card-body p-4">
@@ -154,7 +154,7 @@
     </div>
   </div>
 
-  <!-- Módulos -->
+  <!-- Modules -->
   <div class="col-12">
     <div class="card shadow-sm">
       <div class="card-body p-4">
