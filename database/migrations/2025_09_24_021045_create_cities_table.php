@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname', 100);
-            $table->string('lastname', 100);
-            $table->string('username', 100);
-            $table->string('role', 100);
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('phone', 20);
+            $table->string('name', 100);
+            $table->string('code')->unique()->nullable();
+            $table->string('abbrev', 10)->nullable();
             $table->boolean('status')->default(true);
-            $table->integer('id_city');
-            $table->foreign('id_city')
-            ->constrained('cities')
+            $table->timestamps();
+            $table->foreign('id_department')
+            ->constrained('departments')
             ->cascadeOnUpdate()
             ->cascadeOnDelete();
             $table->timestamps('created_at');
@@ -37,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('cities');
     }
 };

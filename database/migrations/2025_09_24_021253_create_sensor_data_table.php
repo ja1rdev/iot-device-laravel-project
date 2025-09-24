@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stations', function (Blueprint $t) {
-            $t->id();
-            $t->string('name');
-            $t->string('code');
-            $t->boolean('status');
-            $t->timestamp();
+        Schema::create('sensor_data', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stations');
+        Schema::dropIfExists('sensor_data');
     }
 };
