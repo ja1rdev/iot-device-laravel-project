@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('sensors', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('code')->nullable();
+            $table->string('abbrev', 10)->nullable();
+            $table->boolean('status')->default(true);
+
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('department_id')->references('id')->on('departments')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sensors');
+        Schema::dropIfExists('sensor_data');
     }
 };

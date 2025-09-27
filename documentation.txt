@@ -46,3 +46,12 @@ php artisan view:clear
 
 // Create model station
 php artisan make:model Station -m
+
+// Create models
+php artisan make:model Country -m
+php artisan make:model Department -m
+php artisan make:model City -m
+php artisan make:model Station -m
+php artisan make:model User -m
+php artisan make:model Sensor -m
+php artisan make:model SensorData -m
