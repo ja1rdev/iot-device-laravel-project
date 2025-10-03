@@ -11,18 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sensors', function (Blueprint $table) {
+        Schema::create('sensor_data', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('code')->nullable();
-            $table->string('abbrev', 10)->nullable();
-            $table->boolean('status')->default(true);
-
-            $table->unsignedBigInteger('department_id');
-            $table->foreign('department_id')->references('id')->on('departments')
+        
+            $table->unsignedBigInteger('sensor_id');
+            $table->foreign('sensor_id')->references('id')->on('sensors')
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
-
+        
+            $table->unsignedBigInteger('station_id');
+            $table->foreign('station_id')->references('id')->on('stations')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
+        
+            $table->float('temp_value')->nullable();
+            $table->float('humidity')->nullable();
+            $table->boolean('status')->default(true);
+        
             $table->timestamps();
             $table->softDeletes();
         });

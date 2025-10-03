@@ -21,14 +21,9 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone', 20);
             $table->boolean('status')->default(true);
-            $table->integer('id_city');
-            $table->foreign('id_city')
-            ->constrained('cities')
-            ->cascadeOnUpdate()
-            ->cascadeOnDelete();
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
-            $table->timestamp('deleted_at');
+            $table->unsignedBigInteger('city_id'); 
+                   $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -40,3 +35,21 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
+$table->id();
+$table->id();
+$table->string('name');
+$table->string('code')->unique();
+$table->string('type');
+$table->string('unit_measurement');
+$table->decimal('min_value', 10, 2);
+$table->decimal('max_value', 10, 2);
+$table->decimal('current_value', 10, 2)->nullable();
+$table->boolean('status')->default(true);
+
+$table->unsignedBigInteger('device_id');
+$table->foreign('device_id')->references('id')->on('devices')
+      ->cascadeOnUpdate()
+      ->cascadeOnDelete();
+
+$table->timestamps();
+$table->softDeletes();

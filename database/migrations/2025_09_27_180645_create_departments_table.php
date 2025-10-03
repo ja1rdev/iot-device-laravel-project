@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->code('code')->nullable();
+            $table->string('name', 100);
+            $table->string('code', 10)->nullable()->unique();
             $table->string('abbrev', 10)->nullable();
             $table->boolean('status')->default(true);
-
+        
             $table->unsignedBigInteger('country_id');
             $table->foreign('country_id')->references('id')->on('countries')
-            ->casacadeOnUpdate()
-            ->cascadeOnDelete();
-
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
+        
             $table->timestamps();
             $table->softDeletes();
         });

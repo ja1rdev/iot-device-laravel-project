@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('code')->nullable();
             $table->boolean('status')->default(true);
-
+        
             $table->unsignedBigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('cities')
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
-
+        
             $table->timestamps();
             $table->softDeletes();
         });

@@ -55,3 +55,24 @@ php artisan make:model Station -m
 php artisan make:model User -m
 php artisan make:model Sensor -m
 php artisan make:model SensorData -m
+
+
+// Create controller
+php artisan make:controller DashboardController
+
+
+// Resources
+index = lista
+create = crear
+store = guardar
+show = mostrar
+edit = editar
+update = actualizar
+destroy = eliminar
+
+// Create controller
+php artisan make:controller StationController --resource --model=Station
+
+php artisan make:controller SensorController --resource --model=Sensor
+
+php artisan make:controller DataApiController --resource --model=DataApi
