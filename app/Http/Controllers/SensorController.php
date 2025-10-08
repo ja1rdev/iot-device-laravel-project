@@ -3,63 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sensor;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Models\Department;
+
 
 class SensorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $sensors = Sensor::with('department.country')->paginate(10);
+        return view('sensors.index', compact('sensors'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $departments = Department::orderBy('name')->get();
+        return view('sensors.create', compact('departments'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $data = $request->validate([
+            'name'          => 'required',
+            'code'          => 'required|unique:sensors,code',
+            'abbrev'        => 'nullable',
+            'id_department' => 'required|exists:departments,id',
+            'status'        => 'nullable'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Sensor $sensor)
-    {
-        //
-    }
+        Sensor::create([
+            'name'          => $data['name'],
+            'code'          => $data['code'],
+            'abbrev'        => $data['abbrev'] ?? null,
+            'id_department' => $data['id_department'],
+            'status'        => $request->boolean('status'),
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Sensor $sensor)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Sensor $sensor)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Sensor $sensor)
-    {
-        //
+        return redirect()->route('sensors.index')->with('ok', 'Sensor creado');
     }
 }

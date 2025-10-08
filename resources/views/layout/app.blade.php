@@ -15,7 +15,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-white border-bottom mb-4">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="{{ route('home') }}">Laravel + PostgreSQL</a>
+    <a class="navbar-brand fw-bold" href="{{ route('dashboard') }}">Laravel + PostgreSQL</a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="">Inicio</a></li>
