@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100);
-            $table->string('code', 10)->nullable()->unique();
-            $table->string('abbrev', 10)->nullable();
-            $table->boolean('status')->default(true);
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::create('countries', function (Blueprint $t) {
+            $t->id();
+            $t->string('name');
+            $t->string('code')->nullable();
+            $t->string('abbrev',10)->nullable();
+            $t->boolean('status')->default(true);
+            $t->timestamps();
+            $t->softDeletes();
         });
     }
 

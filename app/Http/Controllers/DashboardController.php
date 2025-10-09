@@ -19,6 +19,6 @@ class DashboardController extends Controller
         $lastSync = SensorData::max('created_at');
         $dbDriver = strtoupper(config('database.default'));
 
-        return view('dashboard', compact('stations','sensorsOnline','lastSync','dbDriver'));
+        return view('index', compact('stations','sensorsOnline','lastSync','dbDriver'));
     }
 }

@@ -11,20 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100);
-            $table->string('code', 10)->nullable()->unique();
-            $table->string('abbrev', 10)->nullable();
-            $table->boolean('status')->default(true);
-        
-            $table->unsignedBigInteger('department_id');
-            $table->foreign('department_id')->references('id')->on('departments')
-                  ->cascadeOnUpdate()
-                  ->cascadeOnDelete();
-        
-            $table->timestamps();
-            $table->softDeletes();
+       Schema::create('cities', function (Blueprint $t) {
+            $t->id();
+            $t->string('name');
+            $t->string('code')->nullable();
+            $t->string('abbrev',10)->nullable();
+            $t->boolean('status')->default(true);
+            $t->foreignId('id_department')->constrained('departments');
+            $t->timestamps();
+            $t->softDeletes();
         });
     }
 

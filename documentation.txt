@@ -38,12 +38,6 @@ php artisan serve
 // Clear cache
 php artisan optimize:clear
 
-php artisan config:clear
-
-php artisan route:clear
-
-php artisan view:clear
-
 // Create model station
 php artisan make:model Station -m
 
@@ -76,3 +70,7 @@ php artisan make:controller StationController --resource --model=Station
 php artisan make:controller SensorController --resource --model=Sensor
 
 php artisan make:controller DataApiController --resource --model=DataApi
+
+// Migrates replace
+php artisan migrate:fresh
+

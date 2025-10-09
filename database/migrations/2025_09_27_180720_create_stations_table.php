@@ -11,19 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stations', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('code')->nullable();
-            $table->boolean('status')->default(true);
-        
-            $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id')->on('cities')
-                  ->cascadeOnUpdate()
-                  ->cascadeOnDelete();
-        
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::create('stations', function (Blueprint $t) {
+            $t->id();
+            $t->string('name');
+            $t->string('code')->nullable();
+            $t->boolean('status')->default(true);
+            $t->foreignId('id_city')->constrained('cities');
+            $t->decimal('lat',10,7)->nullable();
+            $t->decimal('lng',10,7)->nullable();
+            $t->timestamps();
+            $t->softDeletes();
         });
     }
 
