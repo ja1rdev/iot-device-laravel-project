@@ -35,6 +35,7 @@ php artisan key:generate
 // Run project
 php artisan serve
 
+
 // Clear cache
 php artisan optimize:clear
 
@@ -43,13 +44,6 @@ php artisan make:model Station -m
 
 // Create models
 php artisan make:model Country -m
-php artisan make:model Department -m
-php artisan make:model City -m
-php artisan make:model Station -m
-php artisan make:model User -m
-php artisan make:model Sensor -m
-php artisan make:model SensorData -m
-
 
 // Create controller
 php artisan make:controller DashboardController
@@ -67,12 +61,10 @@ destroy = eliminar
 // Create controller
 php artisan make:controller StationController --resource --model=Station
 
-php artisan make:controller SensorController --resource --model=Sensor
-
-php artisan make:controller DataApiController --resource --model=DataApi
-
 // Migrates replace
 php artisan migrate:fresh
 
 // Clear config
 php artisan config:clear
+
+php artisan make:seeder BaseGeoSeeder
