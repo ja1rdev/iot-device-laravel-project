@@ -1,4 +1,5 @@
-@extends('layouts.app') @section('title','Nueva estación')
+@extends('layouts.app')
+@section('title','Nueva estación')
 @section('content')
 <h1 class="h4 mb-3">Nueva estación</h1>
 <form method="POST" action="/stations">

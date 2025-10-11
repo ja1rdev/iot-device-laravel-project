@@ -2,64 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Station;
+use App\Models\{Station, City};
 use Illuminate\Http\Request;
 
-class StationController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+class StationController extends Controller {
+    public function index(){
+        $stations = Station::with('city.department.country')->paginate(10);
+        return view('stations.index', compact('stations'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function create(){
+        $cities = City::orderBy('name')->get();
+        return view('stations.create', compact('cities'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Station $station)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Station $station)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Station $station)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Station $station)
-    {
-        //
+    public function store(Request $request){
+        $data = $request->validate([
+            'name'=>'required', 'code'=>'nullable',
+            'id_city'=>'required|exists:cities,id', 'status'=>'nullable'
+        ]);
+        Station::create([
+            'name'=> $data['name'],
+            'code'=> $data['code']??null,
+            'id_city'=> $data['id_city'],
+            'status'=> $request->boolean('status')
+        ]);
+        return redirect()->route('stations.index')->with('ok','Estación creada');
     }
 }

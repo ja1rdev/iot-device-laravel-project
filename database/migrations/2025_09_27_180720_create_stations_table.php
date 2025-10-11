@@ -17,8 +17,6 @@ return new class extends Migration
             $t->string('code')->nullable();
             $t->boolean('status')->default(true);
             $t->foreignId('id_city')->constrained('cities');
-            $t->decimal('lat',10,7)->nullable();
-            $t->decimal('lng',10,7)->nullable();
             $t->timestamps();
             $t->softDeletes();
         });

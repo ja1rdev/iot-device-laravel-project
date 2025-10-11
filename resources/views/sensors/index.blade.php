@@ -1,4 +1,5 @@
-@extends('layouts.app') @section('title','Sensores')
+@extends('layouts.app')
+@section('title','Sensores')
 @section('content')
 <h1 class="h4 mb-3">Sensores</h1>
 <a class="btn btn-primary mb-3" href="/sensors/create">Nuevo</a>
