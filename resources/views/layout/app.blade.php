@@ -18,7 +18,7 @@
     <a class="navbar-brand fw-bold" href="{{ route('dashboard') }}">Laravel + PostgreSQL</a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route ('dashboard') }}">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="">Tabla</a></li>
         <li class="nav-item"><a class="nav-link" href="">Formulario</a></li>
       </ul>

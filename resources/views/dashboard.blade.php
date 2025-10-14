@@ -45,18 +45,18 @@
       </p>
 
       <div class="d-flex flex-wrap gap-2">
-        <a href="" class="btn btn-primary">
+        <a href="{{ route('stations.create') }}" class="btn btn-primary">
           <svg class="icon-24 me-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round"/></svg>
           Nueva estación
         </a>
-        <a href="" class="btn btn-outline-secondary">
+        <a href="{{ route('stations.index') }}" class="btn btn-outline-secondary">
           <svg class="icon-24 me-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <rect x="3" y="4" width="18" height="16" rx="2" stroke-width="2"/>
             <path d="M3 10h18M9 20V10M15 20V10" stroke-width="2" stroke-linecap="round"/>
           </svg>
           Ver estaciones
         </a>
-        <a href="" class="btn btn-outline-secondary">
+        <a href="{{ route('sensors.index') }}" class="btn btn-outline-secondary">
           <svg class="icon-24 me-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <rect x="7" y="7" width="10" height="10" rx="2" stroke-width="2"/>
             <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke-width="2" stroke-linecap="round"/>
@@ -79,7 +79,7 @@
             <circle cx="12" cy="20" r="1.5" fill="currentColor"/>
           </svg>
         </div>
-        <div class="metric-value mt-1"></div>
+        <div class="metric-value mt-1">{{ $sensorsOnline }}</div>
         <div class="muted small">status = true</div>
       </div>
     </div>
@@ -94,9 +94,7 @@
             <path d="M12 7v5l3 2" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </div>
-        <div class="metric-value mt-1">
-
-        </div>
+        <div class="metric-value mt-1">{{ $lastSync ? \Carbon\Carbon::parse($lastSync)->format('Y-m-d H:i') : '—' }}</div>
         <div class="muted small">sensor_data.created_at</div>
       </div>
     </div>
@@ -127,9 +125,10 @@
           <div class="col-md-4">
             <label class="form-label">Estación</label>
             <select id="station_id" class="form-select">
-
-                <option value=""></option>
-
+              <option value="">Seleccione una estación</option>
+              @foreach($stations as $st)
+                <option value="{{ $st->id }}">{{ $st->name }} — {{ $st->city?->name }}</option>
+              @endforeach
             </select>
           </div>
           <div class="col-md-3">
@@ -171,8 +170,8 @@
               </div>
               <p class="mb-3 muted small">Crea y lista estaciones por ciudad.</p>
               <div class="d-flex gap-2">
-                <a href="" class="btn btn-sm btn-primary">Nueva</a>
-                <a href="" class="btn btn-sm btn-outline-secondary">Ver</a>
+                <a href="{{ route('stations.create') }}" class="btn btn-sm btn-primary">Nueva</a>
+                <a href="{{ route('stations.index') }}" class="btn btn-sm btn-outline-secondary">Ver</a>
               </div>
             </div>
           </div>
@@ -186,7 +185,7 @@
                 <strong>Sensores</strong>
               </div>
               <p class="mb-3 muted small">Registra sensores (por department) y asócialos en lecturas.</p>
-              <a href="" class="btn btn-sm btn-outline-secondary">Ver sensores</a>
+              <a href="{{ route('sensors.index') }}" class="btn btn-sm btn-outline-secondary">Ver sensores</a>
             </div>
           </div>
           <div class="col-md-4">
@@ -243,5 +242,25 @@ document.getElementById('group').addEventListener('change', loadSeries);
 document.getElementById('from').addEventListener('change', loadSeries);
 document.getElementById('to').addEventListener('change', loadSeries);
 window.addEventListener('DOMContentLoaded', loadSeries);
+</script>
+@endpush
+
+
+@push('css')
+<style>
+/* Si prefieres que el tema solo aplique al dashboard, colócalo aquí */
+</style>
+@endpush
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Personaliza colores de datasets
+const colors = { temp:'#ef4444', tempBg:'rgba(239,68,68,.1)', hum:'#3b82f6', humBg:'rgba(59,130,246,.1)' };
+// Dentro de loadSeries(), al construir datasets:
+datasets: [
+  { label:'Temperatura (°C)', data: json.temp, borderColor:colors.temp, backgroundColor:colors.tempBg, borderWidth:2, fill:true, tension:.3, pointRadius:0 },
+  { label:'Humedad (%)',      data: json.hum,  borderColor:colors.hum,  backgroundColor:colors.humBg,  borderWidth:2, fill:true, tension:.3, pointRadius:0 }
+]
 </script>
 @endpush
