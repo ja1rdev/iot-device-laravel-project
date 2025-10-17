@@ -68,3 +68,6 @@ php artisan migrate:fresh
 php artisan config:clear
 
 php artisan make:seeder BaseGeoSeeder
+
+// Run seeder
+php artisan db:seed   
