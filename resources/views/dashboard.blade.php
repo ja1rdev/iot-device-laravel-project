@@ -248,16 +248,16 @@ window.addEventListener('DOMContentLoaded', loadSeries);
 
 @push('css')
 <style>
-/* Si prefieres que el tema solo aplique al dashboard, colócalo aquí */
+
 </style>
 @endpush
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// Personaliza colores de datasets
+// Personalize colors
 const colors = { temp:'#ef4444', tempBg:'rgba(239,68,68,.1)', hum:'#3b82f6', humBg:'rgba(59,130,246,.1)' };
-// Dentro de loadSeries(), al construir datasets:
+// Inside loadSeries(), when building datasets:
 datasets: [
   { label:'Temperatura (°C)', data: json.temp, borderColor:colors.temp, backgroundColor:colors.tempBg, borderWidth:2, fill:true, tension:.3, pointRadius:0 },
   { label:'Humedad (%)',      data: json.hum,  borderColor:colors.hum,  backgroundColor:colors.humBg,  borderWidth:2, fill:true, tension:.3, pointRadius:0 }
