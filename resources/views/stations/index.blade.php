@@ -1,9 +1,28 @@
 @extends('layout.app')
 @section('title','Estaciones')
+
+@push('css')
+<style>
+.table.table-sm.table-striped thead th,
+.table.table-sm.table-striped tbody td,
+.table.table-sm.table-striped tfoot td {
+  color: #ffffff !important;
+}
+
+.table.table-sm.table-striped a {
+  color: #e6eef8 !important;
+}
+
+.table.table-sm.table-striped .badge {
+  color: #ffffff !important;
+}
+</style>
+@endpush
+
 @section('content')
 <h1 class="h4 mb-3">Estaciones</h1>
 <a class="btn btn-primary mb-3" href="/stations/create">Nueva</a>
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped text-white">
 <thead><tr><th>Nombre</th><th>Código</th><th>Ciudad</th><th>Departamento</th><th>País</th><th>Estado</th></tr></thead>
 <tbody>
 @foreach($stations as $s)
