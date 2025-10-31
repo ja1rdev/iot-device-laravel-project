@@ -9,7 +9,7 @@ return [
     'mqtt_password' => getenv('MQTT_PASSWORD') ?: null,
     'mqtt_topic' => getenv('MQTT_TOPIC') ?: 'aula/sensores/ambiente',
 
-    // Supabase / Postgres (DB_CONNECTION=pgsql)
+    // Connection DB supabase
     'pg_host'   => getenv('DB_HOST') ?: 'aws-1-us-east-1.pooler.supabase.com',
     'pg_port'   => getenv('DB_PORT') ?: '6543',
     'pg_db'     => getenv('DB_DATABASE') ?: 'postgres',
@@ -17,6 +17,10 @@ return [
     'pg_pass'   => getenv('DB_PASSWORD') ?: 'unicesmag',
     'pg_sslmode'=> getenv('DB_SSLMODE') ?: 'require',
 
-    // Tabla donde insertar (ajusta si en tu proyecto es otro nombre)
+    // Table insert data
     'pg_table'  => getenv('PG_TABLE') ?: 'data',
+    'thingspeak' => [
+        'api_key' => 'MTGRZJQEX82KSTHS',
+        'url'     => 'https://api.thingspeak.com/update',  
+    ],
 ];
