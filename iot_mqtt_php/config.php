@@ -20,7 +20,7 @@ return [
     // Table insert data
     'pg_table'  => getenv('PG_TABLE') ?: 'data',
     'thingspeak' => [
-        'api_key' => 'MTGRZJQEX82KSTHS',
+        'api_key' => 'QMF6MDXM5WANOJNM',
         'url'     => 'https://api.thingspeak.com/update',  
     ],
 ];
